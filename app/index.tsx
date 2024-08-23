@@ -3,8 +3,9 @@ import { defaultStyles } from '@/constants/Styles'
 import { useAssets } from 'expo-asset'
 import { ResizeMode, Video } from 'expo-av'
 import { Link } from 'expo-router'
-import { Text, View, StyleSheet } from 'react-native'
+import { Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native'
+import { styles } from './HomeStyles'
 
 const HomeScreen = () => {
   const [assets] = useAssets([require('@/assets/videos/intro.mp4')])
@@ -25,7 +26,7 @@ const HomeScreen = () => {
       </View>
       <View style={styles.buttons}>
         <Link
-          href="/login"
+          href="/screens/Login"
           style={[
             defaultStyles.pillButton,
             { flex: 1, backgroundColor: Colors.darkBlue },
@@ -37,7 +38,7 @@ const HomeScreen = () => {
           </TouchableOpacity>
         </Link>
         <Link
-          href="/signup"
+          href="/screens/Signup"
           style={[
             defaultStyles.pillButton,
             { flex: 1, backgroundColor: Colors.dark },
@@ -52,35 +53,5 @@ const HomeScreen = () => {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'space-between',
-  },
-  video: {
-    width: '100%',
-    height: '100%',
-    position: 'absolute',
-  },
-  header: {
-    fontSize: 36,
-    fontWeight: '800',
-    textTransform: 'uppercase',
-    color: 'white',
-  },
-  buttons: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    gap: 16,
-    marginBottom: 60,
-    paddingHorizontal: 18,
-  },
-  loginLabel: {
-    color: 'white',
-    fontSize: 22,
-    fontWeight: '500',
-  },
-})
 
 export default HomeScreen

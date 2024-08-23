@@ -1,5 +1,7 @@
 import { Text, View } from 'react-native'
 
+import { styles } from './styles'
+
 const LoginScreen = () => {
   return (
     <View>
