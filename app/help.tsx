@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const Help = () => {
+const HelpScreen = () => {
   return (
     <View>
       <Text>Help</Text>
@@ -9,4 +9,4 @@ const Help = () => {
   )
 }
 
-export default Help
+export default HelpScreen

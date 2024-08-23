@@ -24,6 +24,7 @@ export default {
   primaryMuted: '#C9C8FA',
   background: '#F5F5F5',
   dark: '#141518',
+  darkBlue: '#16216b',
   gray: '#626D77',
   lightGray: '#D8DCE2',
 }
