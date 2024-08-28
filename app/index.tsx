@@ -5,7 +5,7 @@ import { ResizeMode, Video } from 'expo-av'
 import { Link } from 'expo-router'
 import { Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native'
-import { styles } from './HomeStyles'
+import { styles } from './Styles/HomeStyles'
 
 const HomeScreen = () => {
   const [assets] = useAssets([require('@/assets/videos/intro.mp4')])
@@ -26,7 +26,7 @@ const HomeScreen = () => {
       </View>
       <View style={styles.buttons}>
         <Link
-          href="/screens/Login"
+          href="/login"
           style={[
             defaultStyles.pillButton,
             { flex: 1, backgroundColor: Colors.darkBlue },
@@ -38,7 +38,7 @@ const HomeScreen = () => {
           </TouchableOpacity>
         </Link>
         <Link
-          href="/screens/Signup"
+          href="/signup"
           style={[
             defaultStyles.pillButton,
             { flex: 1, backgroundColor: Colors.dark },

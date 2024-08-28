@@ -47,7 +47,7 @@ const SignupScreen = () => {
             onChangeText={setPhoneNumber}
           />
         </View>
-        <Link href={'/screens/Login'} replace asChild>
+        <Link href={'/help'} replace asChild>
           <TouchableOpacity>
             <Text style={defaultStyles.textLink}>
               Already have an account? Log in
