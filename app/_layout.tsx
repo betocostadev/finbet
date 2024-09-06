@@ -6,6 +6,7 @@ import { router, Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import { useEffect } from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import 'react-native-reanimated'
 
 export {
@@ -38,28 +39,30 @@ const InitialLayout = () => {
   }
 
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen
-        name="(screens)/signup"
-        options={{
-          headerShown: true,
-          title: 'Sign Up',
-          headerBackTitle: 'Login',
-          headerShadowVisible: false,
-          headerStyle: { backgroundColor: Colors.background },
-          // headerLeft: () => (
-          //   <TouchableOpacity onPress={() => router.back()}>
-          //     <Ionicons name="arrow-back" size={36} color={Colors.dark} />
-          //   </TouchableOpacity>
-          // ),
-        }}
-      />
-    </Stack>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="(screens)/signup"
+          options={{
+            headerShown: true,
+            title: 'Sign Up',
+            headerBackTitle: 'Login',
+            headerShadowVisible: false,
+            headerStyle: { backgroundColor: Colors.background },
+            headerLeft: () => (
+              <TouchableOpacity onPress={() => router.back()}>
+                <Ionicons name="arrow-back" size={36} color={Colors.dark} />
+              </TouchableOpacity>
+            ),
+          }}
+        />
+      </Stack>
+    </GestureHandlerRootView>
   )
 }
 
-function RootLayoutNav() {
+const RootLayoutNav = () => {
   return <InitialLayout />
 }
 
