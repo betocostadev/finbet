@@ -2,8 +2,9 @@ import Colors from '@/constants/Colors'
 import { Ionicons } from '@expo/vector-icons'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { useFonts } from 'expo-font'
-import { router, Stack } from 'expo-router'
+import { Link, Stack, useRouter } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
+import { StatusBar } from 'expo-status-bar'
 import { useEffect } from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
@@ -23,6 +24,8 @@ const InitialLayout = () => {
     ...FontAwesome.font,
   })
 
+  const router = useRouter()
+
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
     if (error) throw error
@@ -38,10 +41,22 @@ const InitialLayout = () => {
     return null
   }
 
+  const BackBtn = () => {
+    return (
+      <TouchableOpacity onPress={() => router.back()}>
+        <Ionicons name="arrow-back" size={36} color={Colors.dark} />
+      </TouchableOpacity>
+    )
+  }
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="(screens)/help"
+          options={{ title: 'Help', presentation: 'modal' }}
+        />
         <Stack.Screen
           name="(screens)/signup"
           options={{
@@ -50,10 +65,26 @@ const InitialLayout = () => {
             headerBackTitle: 'Login',
             headerShadowVisible: false,
             headerStyle: { backgroundColor: Colors.background },
-            headerLeft: () => (
-              <TouchableOpacity onPress={() => router.back()}>
-                <Ionicons name="arrow-back" size={36} color={Colors.dark} />
-              </TouchableOpacity>
+            headerLeft: () => BackBtn(),
+          }}
+        />
+        <Stack.Screen
+          name="(screens)/login"
+          options={{
+            headerShown: true,
+            title: 'Sign In',
+            headerBackTitle: 'Login',
+            headerShadowVisible: false,
+            headerStyle: { backgroundColor: Colors.background },
+            headerLeft: () => BackBtn(),
+            headerRight: () => (
+              <Link href="/(screens)/help" asChild>
+                <Ionicons
+                  name="help-circle-outline"
+                  size={36}
+                  color={Colors.dark}
+                />
+              </Link>
             ),
           }}
         />
@@ -63,7 +94,12 @@ const InitialLayout = () => {
 }
 
 const RootLayoutNav = () => {
-  return <InitialLayout />
+  return (
+    <>
+      <StatusBar style="dark" />
+      <InitialLayout />
+    </>
+  )
 }
 
 export default RootLayoutNav
