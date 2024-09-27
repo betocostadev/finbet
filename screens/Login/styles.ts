@@ -19,4 +19,14 @@ export const styles = StyleSheet.create({
   disabled: {
     backgroundColor: Colors.primaryMuted,
   },
+  separatorContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 16,
+  },
+  separator: {
+    flex: 1,
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: Colors.gray,
+  },
 })

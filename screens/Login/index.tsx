@@ -10,11 +10,22 @@ import { useState } from 'react'
 
 import { defaultStyles } from '@/constants/Styles'
 import Colors from '@/constants/Colors'
-import { Link } from 'expo-router'
 import { styles } from './styles'
+import { Ionicons } from '@expo/vector-icons'
+
+enum SignInType {
+  Phone,
+  Email,
+  Google,
+  Apple,
+}
 
 const LoginScreen = () => {
-  const onSignIn = async () => {}
+  const onSignIn = async (type: SignInType) => {
+    if (type === SignInType.Phone) {
+      // phone
+    }
+  }
   const [countryCode, setCountryCode] = useState('+55')
   const [phoneNumber, setPhoneNumber] = useState('')
   const keyboardOffset = Platform.OS === 'ios' ? 86 : 20
@@ -55,9 +66,65 @@ const LoginScreen = () => {
               { marginVertical: 20 },
               phoneNumber !== '' ? styles.enabled : styles.disabled,
             ]}
-            onPress={onSignIn}
+            onPress={() => onSignIn(SignInType.Phone)}
           >
             <Text style={defaultStyles.buttonText}>Sign In</Text>
+          </TouchableOpacity>
+          <View style={styles.separatorContainer}>
+            <View style={styles.separator} />
+            <Text style={{ color: Colors.gray, fontSize: 20 }}>or</Text>
+            <View style={styles.separator} />
+          </View>
+          <TouchableOpacity
+            style={[
+              defaultStyles.pillButton,
+              {
+                flexDirection: 'row',
+                gap: 16,
+                marginTop: 20,
+                backgroundColor: '#fff',
+              },
+            ]}
+            onPress={() => onSignIn(SignInType.Email)}
+          >
+            <Ionicons name="mail" size={24} color={'#000'} />
+            <Text style={[defaultStyles.buttonText, { color: '#000' }]}>
+              Continue with email
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[
+              defaultStyles.pillButton,
+              {
+                flexDirection: 'row',
+                gap: 16,
+                marginTop: 20,
+                backgroundColor: '#fff',
+              },
+            ]}
+            onPress={() => onSignIn(SignInType.Google)}
+          >
+            <Ionicons name="logo-google" size={24} color={'#000'} />
+            <Text style={[defaultStyles.buttonText, { color: '#000' }]}>
+              Continue with Google
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[
+              defaultStyles.pillButton,
+              {
+                flexDirection: 'row',
+                gap: 16,
+                marginTop: 20,
+                backgroundColor: '#fff',
+              },
+            ]}
+            onPress={() => onSignIn(SignInType.Apple)}
+          >
+            <Ionicons name="logo-apple" size={24} color={'#000'} />
+            <Text style={[defaultStyles.buttonText, { color: '#000' }]}>
+              Continue with Apple
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
