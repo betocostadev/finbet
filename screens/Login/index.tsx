@@ -1,4 +1,5 @@
 import {
+  Alert,
   KeyboardAvoidingView,
   Platform,
   Text,
@@ -12,6 +13,8 @@ import { defaultStyles } from '@/constants/Styles'
 import Colors from '@/constants/Colors'
 import { styles } from './styles'
 import { Ionicons } from '@expo/vector-icons'
+import { useRouter } from 'expo-router'
+import { isClerkAPIResponseError, useSignIn } from '@clerk/clerk-expo'
 
 enum SignInType {
   Phone,
@@ -21,14 +24,46 @@ enum SignInType {
 }
 
 const LoginScreen = () => {
-  const onSignIn = async (type: SignInType) => {
-    if (type === SignInType.Phone) {
-      // phone
-    }
-  }
   const [countryCode, setCountryCode] = useState('+55')
   const [phoneNumber, setPhoneNumber] = useState('')
   const keyboardOffset = Platform.OS === 'ios' ? 86 : 20
+  const router = useRouter()
+  const { signIn } = useSignIn()
+
+  const onSignIn = async (type: SignInType) => {
+    if (type === SignInType.Phone) {
+      try {
+        const fullPhoneNumber = `${countryCode}${phoneNumber}`
+
+        const { supportedFirstFactors } = await signIn!.create({
+          identifier: fullPhoneNumber,
+        })
+
+        const firstPhoneFactor: any = supportedFirstFactors?.find(
+          (factor: any) => factor.strategy === 'phone_code'
+        )
+
+        const { phoneNumberId } = firstPhoneFactor
+
+        await signIn!.prepareFirstFactor({
+          strategy: 'phone_code',
+          phoneNumberId,
+        })
+
+        router.push({
+          pathname: '/(screens)/verify/[phone]',
+          params: { phone: fullPhoneNumber, signin: 'true' },
+        })
+      } catch (error) {
+        console.log('error', JSON.stringify(error, null, 2))
+        if (isClerkAPIResponseError(error)) {
+          if (error.errors[0].code === 'form_identifier_not_found') {
+            Alert.alert('Error', error.errors[0].message)
+          }
+        }
+      }
+    }
+  }
 
   return (
     <KeyboardAvoidingView

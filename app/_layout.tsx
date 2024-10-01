@@ -9,8 +9,7 @@ import { useEffect } from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import * as SecureStore from 'expo-secure-store'
-import { ClerkProvider, ClerkLoaded } from '@clerk/clerk-expo'
-import { Slot } from 'expo-router'
+import { ClerkProvider } from '@clerk/clerk-expo'
 import 'react-native-reanimated'
 
 const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!
@@ -115,6 +114,17 @@ const InitialLayout = () => {
                 />
               </Link>
             ),
+          }}
+        />
+        <Stack.Screen
+          name="(screens)/verify/[phone]"
+          options={{
+            headerShown: true,
+            title: 'Verify Phone',
+            headerBackTitle: 'Sign Up',
+            headerShadowVisible: false,
+            headerStyle: { backgroundColor: Colors.background },
+            headerLeft: () => BackBtn(),
           }}
         />
       </Stack>
