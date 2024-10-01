@@ -2,10 +2,10 @@ import { StyleSheet } from 'react-native'
 
 import { Text, View } from 'react-native'
 
-export default function TabOneScreen() {
+const TransfersTabScreen = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
+      <Text style={styles.title}>Transfers</Text>
       <View style={styles.separator} />
     </View>
   )
@@ -27,3 +27,5 @@ const styles = StyleSheet.create({
     width: '80%',
   },
 })
+
+export default TransfersTabScreen

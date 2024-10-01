@@ -24,10 +24,10 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Home',
+          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
           headerRight: () => (
             // <Link href="/modal" asChild>
             <Pressable>
@@ -45,9 +45,32 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="invest"
         options={{
-          title: 'Tab Two',
+          title: 'Invest',
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="angle-double-up" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="lifestyle"
+        options={{
+          title: 'Lifestyle',
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="transfers"
+        options={{
+          title: 'Transfers',
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="crypto"
+        options={{
+          title: 'Crypto',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
