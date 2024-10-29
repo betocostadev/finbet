@@ -4,8 +4,8 @@ import { styles } from './styles'
 
 const HelpScreen = () => {
   return (
-    <View>
-      <Text>Help</Text>
+    <View style={styles.container}>
+      <Text style={styles.text}>Help</Text>
     </View>
   )
 }

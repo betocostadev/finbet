@@ -1,4 +1,4 @@
-import SignupScreen from '@/screens/Signup'
+import SignupScreen from './Signup/'
 
 const page = () => {
   return <SignupScreen />

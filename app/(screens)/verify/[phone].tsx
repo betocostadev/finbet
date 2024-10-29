@@ -1,4 +1,4 @@
-import VerifyPhoneScreen from '@/screens/VerifyPhone'
+import VerifyPhoneScreen from '../VerifyPhone'
 
 const page = () => {
   return <VerifyPhoneScreen />
