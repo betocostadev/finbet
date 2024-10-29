@@ -54,24 +54,28 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="lifestyle"
-        options={{
-          title: 'Lifestyle',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
-      <Tabs.Screen
         name="transfers"
         options={{
           title: 'Transfers',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="exchange" color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="crypto"
         options={{
           title: 'Crypto',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="bitcoin" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="lifestyle"
+        options={{
+          title: 'Lifestyle',
+          tabBarIcon: ({ color }) => <TabBarIcon name="th" color={color} />,
         }}
       />
     </Tabs>
