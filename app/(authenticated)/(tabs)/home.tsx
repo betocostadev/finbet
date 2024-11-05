@@ -1,10 +1,14 @@
+import Dropdown from '@/components/Shared/Dropdown'
+import RoundButton from '@/components/Shared/RoundButton'
 import Colors from '@/constants/Colors'
-import { Button, ScrollView, StyleSheet } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
 
 import { Text, View } from 'react-native'
 
 const HomeTabScreen = () => {
   const balance = 2590
+
+  const onAddMoney = () => 0
 
   return (
     <ScrollView style={styles.container}>
@@ -15,8 +19,10 @@ const HomeTabScreen = () => {
         </View>
       </View>
       <View style={styles.actionRow}>
-        <Button title="Send" />
-        <Button title="Request" />
+        <RoundButton icon="add" title="Add money" onPress={onAddMoney} />
+        <RoundButton icon="refresh" title="Exchange" />
+        <RoundButton icon="list" title="Details" />
+        <Dropdown />
       </View>
     </ScrollView>
   )
