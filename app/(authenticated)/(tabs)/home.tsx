@@ -1,12 +1,14 @@
 import Dropdown from '@/components/Shared/Dropdown'
 import RoundButton from '@/components/Shared/RoundButton'
 import Colors from '@/constants/Colors'
+import { useBalanceStore } from '@/store/balanceStore'
 import { ScrollView, StyleSheet } from 'react-native'
 
 import { Text, View } from 'react-native'
 
 const HomeTabScreen = () => {
-  const balance = 2590.44
+  const { balance, runTransaction, transactions, clearTransactions } =
+    useBalanceStore()
 
   const onAddMoney = () => 0
 
@@ -15,7 +17,7 @@ const HomeTabScreen = () => {
       <View style={styles.account}>
         <View style={styles.row}>
           <Text style={styles.currency}>R$</Text>
-          <Text style={styles.balance}>{balance}</Text>
+          <Text style={styles.balance}>{balance()}</Text>
         </View>
       </View>
       <View style={styles.actionRow}>
