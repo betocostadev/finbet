@@ -6,7 +6,7 @@ import { ScrollView, StyleSheet } from 'react-native'
 import { Text, View } from 'react-native'
 
 const HomeTabScreen = () => {
-  const balance = 2590
+  const balance = 2590.44
 
   const onAddMoney = () => 0
 
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   balance: {
-    fontSize: 48,
+    fontSize: 44,
     fontWeight: 'bold',
   },
   currency: {
