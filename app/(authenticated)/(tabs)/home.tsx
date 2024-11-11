@@ -9,18 +9,22 @@ import { ScrollView, StyleSheet } from 'react-native'
 import { Text, View } from 'react-native'
 
 const HomeTabScreen = () => {
-  const { balance, runTransaction, transactions, clearTransactions } =
-    useBalanceStore()
+  const {
+    balance,
+    runTransaction,
+    transactions,
+    clearTransactions,
+    getSortedTransactions,
+  } = useBalanceStore()
 
   const onAddMoney = () => {
     runTransaction({
       id: Math.random().toString(),
-      amount: -29,
+      amount: -230,
       date: new Date(),
-      title: 'Lost money again',
+      title: 'Payment to Pu girl',
     })
   }
-
   console.log(transactions)
 
   return (
@@ -52,7 +56,7 @@ const HomeTabScreen = () => {
           </Text>
         )}
 
-        {transactions.map((transaction) => (
+        {getSortedTransactions().map((transaction) => (
           <View
             key={transaction.id}
             style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}

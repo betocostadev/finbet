@@ -14,12 +14,20 @@ export interface BalanceState {
   runTransaction: (transaction: Transaction) => void
   balance: () => number
   clearTransactions: () => void
+  getSortedTransactions: () => Array<Transaction>
 }
 
 export const useBalanceStore = create<BalanceState>()(
   persist(
     (set, get) => ({
       transactions: [],
+      getSortedTransactions: () =>
+        get()
+          .transactions.map((trans) => ({
+            ...trans,
+            date: (trans.date = new Date(trans.date)),
+          }))
+          .sort((a, b) => b.date.getTime() - a.date.getTime()),
       runTransaction: (transaction: Transaction) => {
         set((state) => ({ transactions: [...state.transactions, transaction] }))
       },
