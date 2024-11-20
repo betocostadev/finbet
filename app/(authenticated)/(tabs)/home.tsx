@@ -1,5 +1,6 @@
 import Dropdown from '@/components/Shared/Dropdown'
 import RoundButton from '@/components/Shared/RoundButton'
+import WidgetList from '@/components/SortableList/WidgetList'
 import Colors from '@/constants/Colors'
 import { defaultStyles } from '@/constants/Styles'
 import { useBalanceStore } from '@/store/balanceStore'
@@ -79,6 +80,8 @@ const HomeTabScreen = () => {
           </View>
         ))}
       </View>
+      <Text style={defaultStyles.sectionHeader}>Widgets</Text>
+      <WidgetList />
     </ScrollView>
   )
 }
