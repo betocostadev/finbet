@@ -34,7 +34,7 @@ const WidgetList = () => {
           console.log(JSON.stringify(positions, null, 2))
         }
       >
-        {[...tiles].map((tile, index) => (
+        {tiles.map((tile, index) => (
           <Tile
             onLongPress={() => true}
             key={tile.id + '-' + index}

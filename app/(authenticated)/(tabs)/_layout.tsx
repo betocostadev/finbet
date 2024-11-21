@@ -4,6 +4,7 @@ import { Tabs } from 'expo-router'
 import { Pressable } from 'react-native'
 
 import Colors from '@/constants/Colors'
+import { BlurView } from 'expo-blur'
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -20,6 +21,21 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors.primary,
         // Disable the static render of the header on web
         // to prevent a hydration error in React Navigation v6.
+        tabBarBackground: () => (
+          <BlurView
+            intensity={100}
+            style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.05)' }}
+          />
+        ),
+        tabBarStyle: {
+          backgroundColor: 'transparent',
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          elevation: 0,
+          borderTopWidth: 0,
+        },
         headerShown: true,
       }}
     >

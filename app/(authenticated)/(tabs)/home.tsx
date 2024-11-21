@@ -21,12 +21,11 @@ const HomeTabScreen = () => {
   const onAddMoney = () => {
     runTransaction({
       id: Math.random().toString(),
-      amount: -60.4,
+      amount: 133.45,
       date: new Date(),
-      title: 'iFood',
+      title: 'Money back',
     })
   }
-  console.log(transactions)
 
   return (
     <ScrollView style={styles.container}>
