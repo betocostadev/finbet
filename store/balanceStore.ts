@@ -10,17 +10,28 @@ export interface Transaction {
 }
 
 export interface BalanceState {
-  transactions: Array<Transaction>
-  runTransaction: (transaction: Transaction) => void
   balance: () => number
   clearTransactions: () => void
   getSortedTransactions: () => Array<Transaction>
+  getMonthSpent: () => number
+  runTransaction: (transaction: Transaction) => void
+  transactions: Array<Transaction>
 }
 
 export const useBalanceStore = create<BalanceState>()(
   persist(
     (set, get) => ({
       transactions: [],
+      getMonthSpent: () => {
+        const actualMonth = new Date().getMonth()
+        const spent =
+          get()
+            .transactions.filter(
+              (trans) => trans.date.getMonth() === actualMonth
+            )
+            .reduce((acc, t) => acc + t.amount, 0) ?? 0
+        return spent
+      },
       getSortedTransactions: () =>
         get()
           .transactions.map((trans) => ({
