@@ -27,7 +27,8 @@ export const useBalanceStore = create<BalanceState>()(
         const spent =
           get()
             .transactions.filter(
-              (trans) => trans.date.getMonth() === actualMonth
+              (trans) =>
+                trans.date.getMonth() === actualMonth && trans.amount < 0
             )
             .reduce((acc, t) => acc + t.amount, 0) ?? 0
         return spent

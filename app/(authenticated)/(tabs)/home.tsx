@@ -21,9 +21,9 @@ const HomeTabScreen = () => {
   const onAddMoney = () => {
     runTransaction({
       id: Math.random().toString(),
-      amount: 800,
+      amount: -60.4,
       date: new Date(),
-      title: 'Freela 1',
+      title: 'iFood',
     })
   }
   console.log(transactions)
