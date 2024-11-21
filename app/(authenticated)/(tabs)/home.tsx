@@ -6,6 +6,7 @@ import { defaultStyles } from '@/constants/Styles'
 import { useBalanceStore } from '@/store/balanceStore'
 import { Ionicons } from '@expo/vector-icons'
 import { ScrollView, StyleSheet } from 'react-native'
+import { useHeaderHeight } from '@react-navigation/elements'
 
 import { Text, View } from 'react-native'
 
@@ -18,6 +19,8 @@ const HomeTabScreen = () => {
     getSortedTransactions,
   } = useBalanceStore()
 
+  const headerHeight = useHeaderHeight()
+
   const onAddMoney = () => {
     runTransaction({
       id: Math.random().toString(),
@@ -28,7 +31,10 @@ const HomeTabScreen = () => {
   }
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={{ paddingTop: headerHeight }}
+    >
       <View style={styles.account}>
         <View style={styles.row}>
           <Text style={styles.currency}>R$</Text>

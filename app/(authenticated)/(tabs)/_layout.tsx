@@ -5,6 +5,7 @@ import { Pressable } from 'react-native'
 
 import Colors from '@/constants/Colors'
 import { BlurView } from 'expo-blur'
+import CustomHeader from '@/components/CustomHeader'
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -24,6 +25,7 @@ export default function TabLayout() {
         tabBarBackground: () => (
           <BlurView
             intensity={100}
+            tint="extraLight"
             style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.05)' }}
           />
         ),
@@ -44,20 +46,22 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
-          headerRight: () => (
-            // <Link href="/modal" asChild>
-            <Pressable>
-              {({ pressed }) => (
-                <FontAwesome
-                  name="info-circle"
-                  size={25}
-                  color={Colors.primaryMuted}
-                  style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                />
-              )}
-            </Pressable>
-            // </Link>
-          ),
+          // headerRight: () => (
+          //   // <Link href="/modal" asChild>
+          //   <Pressable>
+          //     {({ pressed }) => (
+          //       <FontAwesome
+          //         name="info-circle"
+          //         size={25}
+          //         color={Colors.primaryMuted}
+          //         style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+          //       />
+          //     )}
+          //   </Pressable>
+          //   // </Link>
+          // ),
+          header: () => <CustomHeader />,
+          headerTransparent: true,
         }}
       />
       <Tabs.Screen
