@@ -1,8 +1,20 @@
+import { CryptoData } from '@/types/crypto'
+import { useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 
 import { Text, View } from 'react-native'
 
 const CryptoTabScreen = () => {
+  // const [data, setData] = useEffect(undefined)
+
+  useEffect(() => {
+    const getData = async () => {
+      const res = await fetch('/api/listings')
+      const data: CryptoData = await res.json()
+      console.log('data is: ', data)
+    }
+    getData()
+  }, [])
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Crypto</Text>
