@@ -8,10 +8,11 @@ const API_KEY = process.env.CRYPTO_API_KEY
 export async function GET(request: Request) {
   const url = new URL(request.url)
   const ids = url.searchParams.get('id')
-  console.log('ids are: ', ids)
+
   if (!API_KEY) {
     throw new Error('API key is missing')
   }
+
   const response = await fetch(
     `https://pro-api.coinmarketcap.com/v2/cryptocurrency/info?id=${ids}`,
     {
