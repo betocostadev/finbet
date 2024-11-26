@@ -1,24 +1,41 @@
-import { CryptoData } from '@/types/crypto'
-import { useEffect } from 'react'
+import { Currency } from '@/types/crypto'
+import { useQuery } from '@tanstack/react-query'
 import { StyleSheet } from 'react-native'
 
 import { Text, View } from 'react-native'
 
 const CryptoTabScreen = () => {
-  // const [data, setData] = useEffect(undefined)
+  const {
+    isPending,
+    error,
+    data: currencies,
+  } = useQuery({
+    queryKey: ['listings'],
+    queryFn: () => fetch('/api/listings').then((res) => res.json()),
+  })
 
-  useEffect(() => {
-    const getData = async () => {
-      const res = await fetch('/api/listings')
-      const data: CryptoData = await res.json()
-      console.log('data is: ', data)
-    }
-    getData()
-  }, [])
+  // const ids = currencies?.map((currency: Currency) => currency.id).join(',')
+
+  if (error) {
+    return (
+      <View style={styles.container}>
+        <Text>An error has occurred: {error.message}</Text>
+      </View>
+    )
+  }
+
+  console.log(currencies)
+
   return (
     <View style={styles.container}>
+      {isPending && <Text>Loading Crypto...</Text>}
       <Text style={styles.title}>Crypto</Text>
       <View style={styles.separator} />
+      <View>
+        {currencies?.map((currency: Currency) => (
+          <Text key={currency.id}>{currency.name}</Text>
+        ))}
+      </View>
     </View>
   )
 }
