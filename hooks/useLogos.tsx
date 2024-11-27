@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-const useLogos = (ids: string) => {
+const useLogos = (ids: string | undefined) => {
   const { data } = useQuery<Record<string, { id: string; logo: string }>>({
     queryKey: ['infos', 'idsa'],
     queryFn: () => fetch(`/api/info?id=${ids}`).then((res) => res.json()),

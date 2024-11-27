@@ -1,25 +1,18 @@
+import Colors from '@/constants/Colors'
+import useCryptoCurrencies from '@/hooks/useCryptoCurrencies'
 import useLogos from '@/hooks/useLogos'
 import { Currency } from '@/types/crypto'
-import { useQuery } from '@tanstack/react-query'
+import { Ionicons } from '@expo/vector-icons'
 import { Image, StyleSheet } from 'react-native'
 
 import { Text, View } from 'react-native'
 
 const CryptoTabScreen = () => {
-  const {
-    isPending,
-    error,
-    data: currencies,
-  } = useQuery({
-    queryKey: ['listings'],
-    queryFn: () => fetch('/api/listings').then((res) => res.json()),
-  })
+  const { isPending, error, currencies } = useCryptoCurrencies()
 
   const ids = currencies?.map((currency: Currency) => currency.id).join(',')
 
   const logos = useLogos(ids)
-  console.log('LOGOS ARE: ')
-  console.log(logos)
 
   if (error) {
     return (
@@ -37,10 +30,14 @@ const CryptoTabScreen = () => {
       <View>
         {currencies?.map((currency: Currency) => (
           <View style={{ flexDirection: 'row' }} key={currency.id}>
-            <Image
-              source={{ uri: logos?.[currency.id].logo }}
-              style={{ width: 32, height: 32 }}
-            />
+            {!logos ? (
+              <Ionicons name="alert-circle" size={36} color={Colors.dark} />
+            ) : (
+              <Image
+                source={{ uri: logos?.[currency.id].logo }}
+                style={{ width: 32, height: 32 }}
+              />
+            )}
             <Text>{currency.name}</Text>
           </View>
         ))}
