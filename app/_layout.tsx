@@ -13,9 +13,9 @@ import { ClerkProvider, useAuth } from '@clerk/clerk-expo'
 import 'react-native-reanimated'
 import { ActivityIndicator, View } from 'react-native'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { publishableKey } from '@/constants/Keys'
 
 const queryClient = new QueryClient()
-const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!
 
 if (!publishableKey) {
   throw new Error(

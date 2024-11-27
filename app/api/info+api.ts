@@ -2,7 +2,7 @@
 //   return Response.json({ hello: 'world' })
 // }
 
-const API_KEY = process.env.CRYPTO_API_KEY
+import { API_KEY } from '@/constants/Keys'
 
 // You can test at localhost:8081/api/info?id=1
 export async function GET(request: Request) {
