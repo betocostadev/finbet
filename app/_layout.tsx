@@ -165,6 +165,33 @@ const InitialLayout = () => {
           name="(authenticated)/(tabs)"
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="(authenticated)/crypto/[id]"
+          options={{
+            title: '',
+            headerLargeTitle: true,
+            headerTransparent: true,
+            headerLeft: () => (
+              <TouchableOpacity onPress={router.back}>
+                <Ionicons name="arrow-back" size={34} color={Colors.dark} />
+              </TouchableOpacity>
+            ),
+            headerRight: () => (
+              <View style={{ flexDirection: 'row', gap: 10 }}>
+                <TouchableOpacity>
+                  <Ionicons
+                    name="notifications-outline"
+                    size={34}
+                    color={Colors.dark}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                  <Ionicons name="star-outline" size={34} color={Colors.dark} />
+                </TouchableOpacity>
+              </View>
+            ),
+          }}
+        />
       </Stack>
     </GestureHandlerRootView>
   )

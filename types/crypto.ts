@@ -63,3 +63,40 @@ export interface Ticker {
   volume_24h: number
   market_cap: number
 }
+
+export interface CryptoCurrency {
+  category: string
+  contract_address: any[]
+  date_added: string
+  date_launched: string
+  description: string
+  id: number
+  infinite_supply: boolean
+  is_hidden: number
+  logo: string
+  name: string
+  notice: string
+  platform: any | null
+  self_reported_circulating_supply: number | null
+  self_reported_market_cap: number | null
+  self_reported_tags: any | null
+  slug: string
+  subreddit: string
+  symbol: string
+  tag_groups: string[]
+  tag_names: string[]
+  tags: string[]
+  twitter_username: string
+  urls: {
+    announcement: string[]
+    chat: string[]
+    explorer: string[]
+    facebook: string[]
+    message_board: string[]
+    reddit: string[]
+    source_code: string[]
+    technical_doc: string[]
+    twitter: string[]
+    website: string[]
+  }
+}

@@ -11,6 +11,12 @@ export const defaultStyles = StyleSheet.create({
     fontSize: 40,
     fontWeight: '700',
   },
+  subtitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    color: Colors.gray,
+  },
   pillButton: {
     padding: 10,
     height: 60,
