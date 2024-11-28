@@ -13,8 +13,10 @@ import { useHeaderHeight } from '@react-navigation/elements'
 import { defaultStyles } from '@/constants/Styles'
 import Colors from '@/constants/Colors'
 import { useQuery } from '@tanstack/react-query'
-import { CryptoCurrency } from '@/types/crypto'
+import { CryptoCurrency, Ticker } from '@/types/crypto'
 import { Ionicons } from '@expo/vector-icons'
+import { CartesianChart, Line, useChartPressState } from 'victory-native'
+import { useFont } from '@shopify/react-native-skia'
 
 const categories = ['Overview', 'News', 'Orders', 'Transactions']
 
@@ -22,6 +24,8 @@ const CryptoScreen = () => {
   const { id } = useLocalSearchParams()
   const headerHeight = useHeaderHeight()
   const [activeIndex, setActiveIndex] = useState(0)
+  const font = useFont(require('@/assets/fonts/SpaceMono-Regular.ttf'), 12)
+  const { state, isActive } = useChartPressState({ x: 0, y: { price: 0 } })
 
   const { data } = useQuery<CryptoCurrency>({
     queryKey: ['info', 'id'],
@@ -30,6 +34,13 @@ const CryptoScreen = () => {
       return info[+id]
     },
   })
+
+  const { data: tickers } = useQuery<Ticker[]>({
+    queryKey: ['tickers'],
+    queryFn: () => fetch('/api/tickers').then((res) => res.json()),
+  })
+
+  console.log(tickers)
 
   if (!data) {
     return <Text>Error loading Crypto Currency</Text>
@@ -127,9 +138,34 @@ const CryptoScreen = () => {
           </>
         )}
         renderItem={({ item }) => (
-          // TODO: Implement the Chart
           <>
-            {/* <View style={{ height: 500, backgroundColor: 'green' }}></View> */}
+            <View style={[defaultStyles.block, { height: 500 }]}>
+              <CartesianChart
+                chartPressState={state}
+                axisOptions={{
+                  font,
+                  tickCount: 5,
+                  labelOffset: { x: -2, y: 0 },
+                  labelColor: Colors.gray,
+                  formatYLabel: (v) => `${v} €`,
+                  formatXLabel: (ms) => (new Date(ms), 'MM/yy'),
+                }}
+                data={tickers!}
+                xKey="timestamp"
+                yKeys={['price']}
+              >
+                {({ points }) => (
+                  <>
+                    <Line
+                      points={points.price}
+                      color={Colors.primary}
+                      strokeWidth={3}
+                    />
+                    {/* {isActive && <ToolTip x={state.x.position} y={state.y.price.position} />} */}
+                  </>
+                )}
+              </CartesianChart>
+            </View>
             <View style={[defaultStyles.block, { marginTop: 20 }]}>
               <Text style={defaultStyles.subtitle}>Overview</Text>
               <Text style={{ color: Colors.gray }}>{data.description}</Text>
