@@ -25,7 +25,7 @@ const CryptoScreen = () => {
   const headerHeight = useHeaderHeight()
   const [activeIndex, setActiveIndex] = useState(0)
   const font = useFont(require('@/assets/fonts/SpaceMono-Regular.ttf'), 12)
-  const { state, isActive } = useChartPressState({ x: 0, y: { price: 0 } })
+  const { state, isActive } = useChartPressState({ x: '0', y: { price: 0 } })
 
   const { data } = useQuery<CryptoCurrency>({
     queryKey: ['info', 'id'],
@@ -39,8 +39,6 @@ const CryptoScreen = () => {
     queryKey: ['tickers'],
     queryFn: () => fetch('/api/tickers').then((res) => res.json()),
   })
-
-  console.log(tickers)
 
   if (!data) {
     return <Text>Error loading Crypto Currency</Text>
@@ -137,34 +135,43 @@ const CryptoScreen = () => {
             </View>
           </>
         )}
-        renderItem={({ item }) => (
+        renderItem={({}) => (
           <>
             <View style={[defaultStyles.block, { height: 500 }]}>
-              <CartesianChart
-                chartPressState={state}
-                axisOptions={{
-                  font,
-                  tickCount: 5,
-                  labelOffset: { x: -2, y: 0 },
-                  labelColor: Colors.gray,
-                  formatYLabel: (v) => `${v} €`,
-                  formatXLabel: (ms) => (new Date(ms), 'MM/yy'),
-                }}
-                data={tickers!}
-                xKey="timestamp"
-                yKeys={['price']}
-              >
-                {({ points }) => (
-                  <>
-                    <Line
-                      points={points.price}
-                      color={Colors.primary}
-                      strokeWidth={3}
-                    />
-                    {/* {isActive && <ToolTip x={state.x.position} y={state.y.price.position} />} */}
-                  </>
-                )}
-              </CartesianChart>
+              {tickers && (
+                <CartesianChart
+                  chartPressState={state}
+                  axisOptions={{
+                    font,
+                    tickCount: 4,
+                    labelOffset: { x: -2, y: 0 },
+                    labelColor: Colors.gray,
+                    formatYLabel: (v) => `R$${v}`,
+                    formatXLabel: (ms) => {
+                      const date = new Date(ms)
+                      const display = date.toLocaleString('default', {
+                        month: 'short',
+                        year: '2-digit',
+                      })
+                      return display
+                    },
+                  }}
+                  data={tickers.map((ticker) => ({ ...ticker }))}
+                  xKey="timestamp"
+                  yKeys={['price']}
+                >
+                  {({ points }) => (
+                    <>
+                      <Line
+                        points={points.price}
+                        color={Colors.primary}
+                        strokeWidth={3}
+                      />
+                      {/* {isActive && <ToolTip x={state.x.position} y={state.y.price.position} />} */}
+                    </>
+                  )}
+                </CartesianChart>
+              )}
             </View>
             <View style={[defaultStyles.block, { marginTop: 20 }]}>
               <Text style={defaultStyles.subtitle}>Overview</Text>
