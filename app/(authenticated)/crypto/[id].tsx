@@ -1,13 +1,14 @@
 import {
   View,
   Text,
+  TextInput,
   SectionList,
   StyleSheet,
   Image,
   TouchableOpacity,
   ScrollView,
 } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Stack, useLocalSearchParams } from 'expo-router'
 import { useHeaderHeight } from '@react-navigation/elements'
 import { defaultStyles } from '@/constants/Styles'
@@ -16,9 +17,23 @@ import { useQuery } from '@tanstack/react-query'
 import { CryptoCurrency, Ticker } from '@/types/crypto'
 import { Ionicons } from '@expo/vector-icons'
 import { CartesianChart, Line, useChartPressState } from 'victory-native'
-import { useFont } from '@shopify/react-native-skia'
+import { Circle, useFont } from '@shopify/react-native-skia'
+import * as Haptics from 'expo-haptics'
+import Animated, { SharedValue } from 'react-native-reanimated'
 
 const categories = ['Overview', 'News', 'Orders', 'Transactions']
+
+const AnimatedTextInput = Animated.createAnimatedComponent(TextInput)
+
+const ToolTip = ({
+  x,
+  y,
+}: {
+  x: SharedValue<number>
+  y: SharedValue<number>
+}) => {
+  return <Circle cx={x} cy={y} r={8} color={Colors.primary} />
+}
 
 const CryptoScreen = () => {
   const { id } = useLocalSearchParams()
@@ -26,6 +41,11 @@ const CryptoScreen = () => {
   const [activeIndex, setActiveIndex] = useState(0)
   const font = useFont(require('@/assets/fonts/SpaceMono-Regular.ttf'), 12)
   const { state, isActive } = useChartPressState({ x: '0', y: { price: 0 } })
+
+  useEffect(() => {
+    console.log(state, isActive)
+    if (isActive) Haptics.selectionAsync()
+  }, [isActive])
 
   const { data } = useQuery<CryptoCurrency>({
     queryKey: ['info', 'id'],
@@ -139,38 +159,90 @@ const CryptoScreen = () => {
           <>
             <View style={[defaultStyles.block, { height: 500 }]}>
               {tickers && (
-                <CartesianChart
-                  chartPressState={state}
-                  axisOptions={{
-                    font,
-                    tickCount: 4,
-                    labelOffset: { x: -2, y: 0 },
-                    labelColor: Colors.gray,
-                    formatYLabel: (v) => `R$${v}`,
-                    formatXLabel: (ms) => {
-                      const date = new Date(ms)
-                      const display = date.toLocaleString('default', {
-                        month: 'short',
-                        year: '2-digit',
-                      })
-                      return display
-                    },
-                  }}
-                  data={tickers.map((ticker) => ({ ...ticker }))}
-                  xKey="timestamp"
-                  yKeys={['price']}
-                >
-                  {({ points }) => (
-                    <>
-                      <Line
-                        points={points.price}
-                        color={Colors.primary}
-                        strokeWidth={3}
-                      />
-                      {/* {isActive && <ToolTip x={state.x.position} y={state.y.price.position} />} */}
-                    </>
+                <>
+                  {!isActive ? (
+                    <View>
+                      <Text
+                        style={{
+                          fontSize: 28,
+                          fontWeight: 'bold',
+                          color: Colors.dark,
+                        }}
+                      >
+                        R${tickers[tickers.length - 1].price.toFixed(2)}
+                      </Text>
+                      <Text
+                        style={{
+                          fontSize: 18,
+                          color: Colors.gray,
+                        }}
+                      >
+                        Today
+                      </Text>
+                    </View>
+                  ) : (
+                    <View>
+                      <AnimatedTextInput
+                        editable={false}
+                        underlineColorAndroid={'transparent'}
+                        style={{
+                          fontSize: 28,
+                          fontWeight: 'bold',
+                          color: Colors.dark,
+                        }}
+                      >
+                        Value
+                      </AnimatedTextInput>
+                      <AnimatedTextInput
+                        editable={false}
+                        underlineColorAndroid={'transparent'}
+                        style={{
+                          fontSize: 18,
+                          color: Colors.gray,
+                        }}
+                      >
+                        TEST
+                      </AnimatedTextInput>
+                    </View>
                   )}
-                </CartesianChart>
+                  <CartesianChart
+                    chartPressState={state}
+                    axisOptions={{
+                      font,
+                      tickCount: 5,
+                      labelOffset: { x: -2, y: 0 },
+                      labelColor: Colors.gray,
+                      formatYLabel: (v) => `R$${v}`,
+                      formatXLabel: (ms) => {
+                        const date = new Date(ms)
+                        const display = date.toLocaleString('default', {
+                          month: 'short',
+                          year: '2-digit',
+                        })
+                        return display
+                      },
+                    }}
+                    data={tickers.map((ticker) => ({ ...ticker }))}
+                    xKey="timestamp"
+                    yKeys={['price']}
+                  >
+                    {({ points }) => (
+                      <>
+                        <Line
+                          points={points.price}
+                          color={Colors.primary}
+                          strokeWidth={3}
+                        />
+                        {isActive && (
+                          <ToolTip
+                            x={state.x.position}
+                            y={state.y.price.position}
+                          />
+                        )}
+                      </>
+                    )}
+                  </CartesianChart>
+                </>
               )}
             </View>
             <View style={[defaultStyles.block, { marginTop: 20 }]}>
