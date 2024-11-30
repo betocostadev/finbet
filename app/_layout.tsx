@@ -14,6 +14,7 @@ import 'react-native-reanimated'
 import { ActivityIndicator, View } from 'react-native'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { publishableKey } from '@/constants/Keys'
+import { UserInactivityProvider } from '@/contexts/UserInactivity'
 
 const queryClient = new QueryClient()
 
@@ -192,6 +193,10 @@ const InitialLayout = () => {
             ),
           }}
         />
+        <Stack.Screen
+          name="(authenticated)/(modals)/lock"
+          options={{ headerShown: false, animation: 'none' }}
+        />
       </Stack>
     </GestureHandlerRootView>
   )
@@ -201,8 +206,10 @@ const RootLayoutNav = () => {
   return (
     <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
       <QueryClientProvider client={queryClient}>
-        <StatusBar style="dark" />
-        <InitialLayout />
+        <UserInactivityProvider>
+          <StatusBar style="dark" />
+          <InitialLayout />
+        </UserInactivityProvider>
       </QueryClientProvider>
     </ClerkProvider>
   )
