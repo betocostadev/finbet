@@ -198,6 +198,10 @@ const InitialLayout = () => {
           name="(authenticated)/(modals)/lock"
           options={{ headerShown: false, animation: 'none' }}
         />
+        <Stack.Screen
+          name="(authenticated)/(modals)/account"
+          options={{ headerShown: false, animation: 'none' }}
+        />
       </Stack>
     </GestureHandlerRootView>
   )
