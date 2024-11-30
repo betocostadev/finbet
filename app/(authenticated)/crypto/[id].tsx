@@ -19,8 +19,13 @@ import { Ionicons } from '@expo/vector-icons'
 import { CartesianChart, Line, useChartPressState } from 'victory-native'
 import { Circle, useFont } from '@shopify/react-native-skia'
 import * as Haptics from 'expo-haptics'
-import Animated, { SharedValue } from 'react-native-reanimated'
+import Animated, {
+  SharedValue,
+  useAnimatedProps,
+} from 'react-native-reanimated'
 
+// Fix in case the animated text for date isn't working
+// Animated.addWhitelistedNativeProps({ text: true })
 const categories = ['Overview', 'News', 'Orders', 'Transactions']
 
 const AnimatedTextInput = Animated.createAnimatedComponent(TextInput)
@@ -58,6 +63,21 @@ const CryptoScreen = () => {
   const { data: tickers } = useQuery<Ticker[]>({
     queryKey: ['tickers'],
     queryFn: () => fetch('/api/tickers').then((res) => res.json()),
+  })
+
+  const animatedText = useAnimatedProps(() => {
+    return {
+      text: `R$${state.y.price.value.value.toFixed(2)}`,
+      defaultValue: '',
+    }
+  })
+
+  const animatedDateText = useAnimatedProps(() => {
+    const date = new Date(state.x.value.value)
+    return {
+      text: `${date.toLocaleDateString()}`,
+      defaultValue: '',
+    }
   })
 
   if (!data) {
@@ -190,9 +210,9 @@ const CryptoScreen = () => {
                           fontWeight: 'bold',
                           color: Colors.dark,
                         }}
-                      >
-                        Value
-                      </AnimatedTextInput>
+                        animatedProps={animatedText}
+                      />
+
                       <AnimatedTextInput
                         editable={false}
                         underlineColorAndroid={'transparent'}
@@ -200,9 +220,8 @@ const CryptoScreen = () => {
                           fontSize: 18,
                           color: Colors.gray,
                         }}
-                      >
-                        TEST
-                      </AnimatedTextInput>
+                        animatedProps={animatedDateText}
+                      />
                     </View>
                   )}
                   <CartesianChart
