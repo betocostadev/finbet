@@ -200,7 +200,17 @@ const InitialLayout = () => {
         />
         <Stack.Screen
           name="(authenticated)/(modals)/account"
-          options={{ headerShown: false, animation: 'none' }}
+          options={{
+            presentation: 'transparentModal',
+            animation: 'fade',
+            title: 'Your account',
+            headerTransparent: true,
+            headerRight: () => (
+              <TouchableOpacity onPress={router.back}>
+                <Ionicons name="close-circle" size={36} color={Colors.dark} />
+              </TouchableOpacity>
+            ),
+          }}
         />
       </Stack>
     </GestureHandlerRootView>
