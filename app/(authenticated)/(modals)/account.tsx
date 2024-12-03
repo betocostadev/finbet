@@ -9,8 +9,9 @@ import {
 import React, { useState } from 'react'
 import { useAuth, useUser } from '@clerk/clerk-expo'
 import { BlurView } from 'expo-blur'
-import Colors from '@/constants/Colors'
 import { Ionicons } from '@expo/vector-icons'
+import Colors from '@/constants/Colors'
+import * as ImagePicker from 'expo-image-picker'
 
 const Account = () => {
   const { user } = useUser()
@@ -19,11 +20,38 @@ const Account = () => {
   const [lastName, setLastName] = useState(user?.lastName)
   const [edit, setEdit] = useState(false)
 
-  const onSaveUser = () => {
-    setEdit(false)
+  const onSaveUser = async () => {
+    try {
+      if (firstName?.length && lastName?.length) {
+        await user?.update({ firstName, lastName })
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setEdit(false)
+    }
   }
 
-  const onCaptureImage = () => {}
+  const onCaptureImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 0.75,
+      base64: true,
+    })
+
+    if (!result.canceled) {
+      const base64 = `data:image/png;base64,${result.assets[0].base64}`
+      try {
+        user?.setProfileImage({
+          file: base64,
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
 
   if (!user) {
     return (
@@ -39,7 +67,9 @@ const Account = () => {
     <BlurView intensity={80} style={styles.container}>
       <View style={{ alignItems: 'center', marginTop: 10 }}>
         <TouchableOpacity style={styles.captureBtn} onPress={onCaptureImage}>
-          {user.imageUrl && <Image source={{ uri: user.imageUrl }} />}
+          {user.imageUrl && (
+            <Image source={{ uri: user.imageUrl }} style={styles.avatar} />
+          )}
         </TouchableOpacity>
       </View>
       <View style={{ flexDirection: 'row', gap: 10 }}>
@@ -92,10 +122,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 18,
   },
+  avatar: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: Colors.gray,
+  },
   captureBtn: {
-    paddingHorizontal: 10,
-    width: 80,
-    height: 80,
+    width: 100,
+    height: 100,
     borderRadius: 50,
     backgroundColor: Colors.gray,
   },
