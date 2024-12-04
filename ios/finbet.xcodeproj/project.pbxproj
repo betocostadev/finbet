@@ -7,15 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		131D57CF476F4C2FBD77CC85 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C73045965B24D66BABF97D9 /* noop-file.swift */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		262CFA03E82541458C2F9A91 /* default-Icon-60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 864F81BFC23E4FA5A0C6BD19 /* default-Icon-60x60@2x.png */; };
+		381A4EDCB25C41584A43DB02 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B45CBED8F398EF61DCAB73D1 /* PrivacyInfo.xcprivacy */; };
+		3D3E2E79671449E1886088B4 /* vivid-Icon-60x60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF31A3EA8E64E4290939D3E /* vivid-Icon-60x60@3x.png */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		58F5C56D5D38F4F214754325 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 3CBDC50C84D254F71669613B /* PrivacyInfo.xcprivacy */; };
 		96905EF65AED1B983A6B3ABC /* libPods-finbet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-finbet.a */; };
+		AE3E95BDAB3645D4A4BE1FA1 /* default-Icon-60x60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 549BDF96A02840989CFD0451 /* default-Icon-60x60@3x.png */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		DCFA7E5430B244069008D123 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B09AAF31E34984801F4A28 /* noop-file.swift */; };
+		BEA169606648438294B60045 /* dark-Icon-60x60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 221D2CAC7E49409F957A3E4B /* dark-Icon-60x60@3x.png */; };
+		BEEB8A0075E245EF91FB2FA6 /* dark-Icon-60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E818548EB4A442769FACF3E9 /* dark-Icon-60x60@2x.png */; };
+		CB2B19E92E2940B6AA4BE536 /* vivid-Icon-60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 904E7264BE394D02843F983E /* vivid-Icon-60x60@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,14 +31,20 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = finbet/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = finbet/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = finbet/main.m; sourceTree = "<group>"; };
-		3CBDC50C84D254F71669613B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = finbet/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		3EDD2905FC7645038F3F9807 /* finbet-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "finbet-Bridging-Header.h"; path = "finbet/finbet-Bridging-Header.h"; sourceTree = "<group>"; };
+		221D2CAC7E49409F957A3E4B /* dark-Icon-60x60@3x.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "dark-Icon-60x60@3x.png"; path = "finbet/DynamicAppIcons/dark-Icon-60x60@3x.png"; sourceTree = "<group>"; };
+		2C339B7F6BCF4B729252692B /* finbet-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "finbet-Bridging-Header.h"; path = "finbet/finbet-Bridging-Header.h"; sourceTree = "<group>"; };
+		549BDF96A02840989CFD0451 /* default-Icon-60x60@3x.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "default-Icon-60x60@3x.png"; path = "finbet/DynamicAppIcons/default-Icon-60x60@3x.png"; sourceTree = "<group>"; };
 		58EEBF8E8E6FB1BC6CAF49B5 /* libPods-finbet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-finbet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C73045965B24D66BABF97D9 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "finbet/noop-file.swift"; sourceTree = "<group>"; };
 		6C2E3173556A471DD304B334 /* Pods-finbet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-finbet.debug.xcconfig"; path = "Target Support Files/Pods-finbet/Pods-finbet.debug.xcconfig"; sourceTree = "<group>"; };
 		7A4D352CD337FB3A3BF06240 /* Pods-finbet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-finbet.release.xcconfig"; path = "Target Support Files/Pods-finbet/Pods-finbet.release.xcconfig"; sourceTree = "<group>"; };
+		7DF31A3EA8E64E4290939D3E /* vivid-Icon-60x60@3x.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "vivid-Icon-60x60@3x.png"; path = "finbet/DynamicAppIcons/vivid-Icon-60x60@3x.png"; sourceTree = "<group>"; };
+		864F81BFC23E4FA5A0C6BD19 /* default-Icon-60x60@2x.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "default-Icon-60x60@2x.png"; path = "finbet/DynamicAppIcons/default-Icon-60x60@2x.png"; sourceTree = "<group>"; };
+		904E7264BE394D02843F983E /* vivid-Icon-60x60@2x.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "vivid-Icon-60x60@2x.png"; path = "finbet/DynamicAppIcons/vivid-Icon-60x60@2x.png"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = finbet/SplashScreen.storyboard; sourceTree = "<group>"; };
+		B45CBED8F398EF61DCAB73D1 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = finbet/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		E2B09AAF31E34984801F4A28 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "finbet/noop-file.swift"; sourceTree = "<group>"; };
+		E818548EB4A442769FACF3E9 /* dark-Icon-60x60@2x.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "dark-Icon-60x60@2x.png"; path = "finbet/DynamicAppIcons/dark-Icon-60x60@2x.png"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-finbet/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -59,9 +71,10 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				E2B09AAF31E34984801F4A28 /* noop-file.swift */,
-				3EDD2905FC7645038F3F9807 /* finbet-Bridging-Header.h */,
-				3CBDC50C84D254F71669613B /* PrivacyInfo.xcprivacy */,
+				5C73045965B24D66BABF97D9 /* noop-file.swift */,
+				2C339B7F6BCF4B729252692B /* finbet-Bridging-Header.h */,
+				7B312E5504BF420E9078691E /* DynamicAppIcons */,
+				B45CBED8F398EF61DCAB73D1 /* PrivacyInfo.xcprivacy */,
 			);
 			name = finbet;
 			sourceTree = "<group>";
@@ -73,6 +86,20 @@
 				58EEBF8E8E6FB1BC6CAF49B5 /* libPods-finbet.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7B312E5504BF420E9078691E /* DynamicAppIcons */ = {
+			isa = PBXGroup;
+			children = (
+				864F81BFC23E4FA5A0C6BD19 /* default-Icon-60x60@2x.png */,
+				549BDF96A02840989CFD0451 /* default-Icon-60x60@3x.png */,
+				E818548EB4A442769FACF3E9 /* dark-Icon-60x60@2x.png */,
+				221D2CAC7E49409F957A3E4B /* dark-Icon-60x60@3x.png */,
+				904E7264BE394D02843F983E /* vivid-Icon-60x60@2x.png */,
+				7DF31A3EA8E64E4290939D3E /* vivid-Icon-60x60@3x.png */,
+			);
+			name = DynamicAppIcons;
+			path = "";
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -147,13 +174,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "finbet" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				60662CB74A16416788608CB8 /* [Expo] Configure project */,
+				8E77AA8C27D12DF899733F41 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				D8B63671B0CF66F10C507D6E /* [CP] Embed Pods Frameworks */,
+				6E8C911E45141CC3DD47CF27 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -203,7 +230,13 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				58F5C56D5D38F4F214754325 /* PrivacyInfo.xcprivacy in Resources */,
+				262CFA03E82541458C2F9A91 /* default-Icon-60x60@2x.png in Resources */,
+				AE3E95BDAB3645D4A4BE1FA1 /* default-Icon-60x60@3x.png in Resources */,
+				BEEB8A0075E245EF91FB2FA6 /* dark-Icon-60x60@2x.png in Resources */,
+				BEA169606648438294B60045 /* dark-Icon-60x60@3x.png in Resources */,
+				CB2B19E92E2940B6AA4BE536 /* vivid-Icon-60x60@2x.png in Resources */,
+				3D3E2E79671449E1886088B4 /* vivid-Icon-60x60@3x.png in Resources */,
+				381A4EDCB25C41584A43DB02 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,24 +280,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		60662CB74A16416788608CB8 /* [Expo] Configure project */ = {
+		6E8C911E45141CC3DD47CF27 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-finbet/Pods-finbet-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
 			);
-			name = "[Expo] Configure project";
-			outputFileListPaths = (
-			);
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-finbet/expo-configure-project.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-finbet/Pods-finbet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -298,23 +330,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-finbet/Pods-finbet-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D8B63671B0CF66F10C507D6E /* [CP] Embed Pods Frameworks */ = {
+		8E77AA8C27D12DF899733F41 /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-finbet/Pods-finbet-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
+			inputFileListPaths = (
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+			);
+			name = "[Expo] Configure project";
+			outputFileListPaths = (
+			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-finbet/Pods-finbet-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-finbet/expo-configure-project.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -326,7 +359,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */,
-				DCFA7E5430B244069008D123 /* noop-file.swift in Sources */,
+				131D57CF476F4C2FBD77CC85 /* noop-file.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

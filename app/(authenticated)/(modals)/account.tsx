@@ -6,13 +6,29 @@ import {
   Image,
   TextInput,
 } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuth, useUser } from '@clerk/clerk-expo'
+import { useRouter } from 'expo-router'
 import { BlurView } from 'expo-blur'
 import { Ionicons } from '@expo/vector-icons'
 import Colors from '@/constants/Colors'
 import * as ImagePicker from 'expo-image-picker'
-import { useRouter } from 'expo-router'
+import { getAppIcon, setAppIcon } from 'expo-dynamic-app-icon'
+
+const ICONS = [
+  {
+    name: 'Default',
+    icon: require('@/assets/images/icon.png'),
+  },
+  {
+    name: 'Dark',
+    icon: require('@/assets/images/icon-dark.png'),
+  },
+  {
+    name: 'Vivid',
+    icon: require('@/assets/images/icon-vivid.png'),
+  },
+]
 
 const Account = () => {
   const { user } = useUser()
@@ -21,6 +37,17 @@ const Account = () => {
   const [firstName, setFirstName] = useState(user?.firstName)
   const [lastName, setLastName] = useState(user?.lastName)
   const [edit, setEdit] = useState(false)
+
+  const [activeIcon, setActiveIcon] = useState('Default')
+
+  useEffect(() => {
+    const loadCurrentIconPref = async () => {
+      const icon = await getAppIcon()
+      console.log('Icon is: ', icon)
+      setActiveIcon(icon)
+    }
+    loadCurrentIconPref()
+  }, [])
 
   const handleSignOut = () => {
     signOut()
@@ -58,6 +85,11 @@ const Account = () => {
         console.log(error)
       }
     }
+  }
+
+  const onChangeAppIcon = async (icon: string) => {
+    await setAppIcon(icon.toLowerCase())
+    setActiveIcon(icon)
   }
 
   if (!user) {
@@ -128,9 +160,25 @@ const Account = () => {
           <Ionicons name="megaphone" size={24} color={Colors.dark} />
           <Text style={[styles.btnText, { flex: 1 }]}>Inbox</Text>
           <View style={styles.inboxView}>
-            <Text style={{ color: '#fff', fontSize: 12 }}>13</Text>
+            <Text style={{ color: '#fff', fontSize: 12 }}>3</Text>
           </View>
         </TouchableOpacity>
+      </View>
+
+      <View style={styles.actions}>
+        {ICONS.map((icon) => (
+          <TouchableOpacity
+            key={icon.name}
+            style={styles.btn}
+            onPress={() => onChangeAppIcon(icon.name)}
+          >
+            <Image source={icon.icon} style={styles.iconImage} />
+            <Text style={styles.btnText}>{icon.name}</Text>
+            {activeIcon.toLowerCase() === icon.name.toLowerCase() && (
+              <Ionicons name="checkmark" size={24} color={Colors.dark} />
+            )}
+          </TouchableOpacity>
+        ))}
       </View>
     </BlurView>
   )
@@ -191,6 +239,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 10,
     justifyContent: 'center',
+  },
+  iconImage: {
+    width: 24,
+    height: 24,
   },
 })
 
