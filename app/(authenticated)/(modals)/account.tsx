@@ -12,13 +12,20 @@ import { BlurView } from 'expo-blur'
 import { Ionicons } from '@expo/vector-icons'
 import Colors from '@/constants/Colors'
 import * as ImagePicker from 'expo-image-picker'
+import { useRouter } from 'expo-router'
 
 const Account = () => {
   const { user } = useUser()
   const { signOut } = useAuth()
+  const router = useRouter()
   const [firstName, setFirstName] = useState(user?.firstName)
   const [lastName, setLastName] = useState(user?.lastName)
   const [edit, setEdit] = useState(false)
+
+  const handleSignOut = () => {
+    signOut()
+    router.replace('/')
+  }
 
   const onSaveUser = async () => {
     try {
@@ -104,6 +111,27 @@ const Account = () => {
           </View>
         )}
       </View>
+      <View style={styles.actions}>
+        <TouchableOpacity style={styles.btn} onPress={handleSignOut}>
+          <Ionicons name="person" size={24} color={Colors.dark} />
+          <Text style={styles.btnText}>Logout</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.btn}>
+          <Ionicons name="person" size={24} color={Colors.dark} />
+          <Text style={styles.btnText}>Account</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.btn}>
+          <Ionicons name="bulb" size={24} color={Colors.dark} />
+          <Text style={styles.btnText}>Learn</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.btn}>
+          <Ionicons name="megaphone" size={24} color={Colors.dark} />
+          <Text style={[styles.btnText, { flex: 1 }]}>Inbox</Text>
+          <View style={styles.inboxView}>
+            <Text style={{ color: '#fff', fontSize: 12 }}>13</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </BlurView>
   )
 }
@@ -142,6 +170,27 @@ const styles = StyleSheet.create({
     borderColor: Colors.dark,
     borderRadius: 10,
     padding: 8,
+  },
+  actions: {
+    backgroundColor: 'rgba(256,256,256, 0.3)',
+    borderRadius: 16,
+    gap: 0,
+    margin: 20,
+  },
+  btn: {
+    padding: 14,
+    flexDirection: 'row',
+    gap: 20,
+  },
+  btnText: {
+    color: Colors.dark,
+    fontSize: 18,
+  },
+  inboxView: {
+    backgroundColor: Colors.primary,
+    paddingHorizontal: 10,
+    borderRadius: 10,
+    justifyContent: 'center',
   },
 })
 

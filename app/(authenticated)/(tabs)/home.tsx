@@ -38,7 +38,7 @@ const HomeTabScreen = () => {
       <View style={styles.account}>
         <View style={styles.row}>
           <Text style={styles.currency}>R$</Text>
-          <Text style={styles.balance}>{balance()}</Text>
+          <Text style={styles.balance}>{balance().toFixed(2)}</Text>
         </View>
       </View>
 
