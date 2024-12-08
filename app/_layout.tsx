@@ -212,6 +212,20 @@ const InitialLayout = () => {
             ),
           }}
         />
+        <Stack.Screen
+          name="(authenticated)/(modals)/addTransaction"
+          options={{
+            presentation: 'containedModal',
+            animation: 'slide_from_bottom',
+            title: 'Add Transaction',
+            headerTransparent: true,
+            headerRight: () => (
+              <TouchableOpacity onPress={router.back}>
+                <Ionicons name="close-circle" size={36} color={Colors.dark} />
+              </TouchableOpacity>
+            ),
+          }}
+        />
       </Stack>
     </GestureHandlerRootView>
   )

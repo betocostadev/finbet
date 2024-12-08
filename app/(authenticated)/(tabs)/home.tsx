@@ -9,6 +9,7 @@ import { ScrollView, StyleSheet } from 'react-native'
 import { useHeaderHeight } from '@react-navigation/elements'
 
 import { Text, View } from 'react-native'
+import { useRouter } from 'expo-router'
 
 const HomeTabScreen = () => {
   const {
@@ -20,14 +21,16 @@ const HomeTabScreen = () => {
   } = useBalanceStore()
 
   const headerHeight = useHeaderHeight()
+  const router = useRouter()
 
   const onAddMoney = () => {
-    runTransaction({
-      id: Math.random().toString(),
-      amount: 133.45,
-      date: new Date(),
-      title: 'Money back',
-    })
+    router.push('/(authenticated)/(modals)/addTransaction')
+    // runTransaction({
+    //   id: Math.random().toString(),
+    //   amount: 133.45,
+    //   date: new Date(),
+    //   title: 'Money back',
+    // })
   }
 
   return (
@@ -43,7 +46,7 @@ const HomeTabScreen = () => {
       </View>
 
       <View style={styles.actionRow}>
-        <RoundButton icon="add" title="Add money" onPress={onAddMoney} />
+        <RoundButton icon="add" title="Add" onPress={onAddMoney} />
         <RoundButton
           icon="refresh"
           title="Exchange"
