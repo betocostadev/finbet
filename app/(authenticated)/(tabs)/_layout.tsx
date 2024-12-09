@@ -1,7 +1,7 @@
 import React from 'react'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { Tabs } from 'expo-router'
-import { Pressable } from 'react-native'
+// import { Pressable } from 'react-native'
 
 import Colors from '@/constants/Colors'
 import { BlurView } from 'expo-blur'

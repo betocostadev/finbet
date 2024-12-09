@@ -12,25 +12,14 @@ import { Text, View } from 'react-native'
 import { useRouter } from 'expo-router'
 
 const HomeTabScreen = () => {
-  const {
-    balance,
-    runTransaction,
-    transactions,
-    clearTransactions,
-    getSortedTransactions,
-  } = useBalanceStore()
+  const { balance, transactions, clearTransactions, getSortedTransactions } =
+    useBalanceStore()
 
   const headerHeight = useHeaderHeight()
   const router = useRouter()
 
   const onAddMoney = () => {
     router.push('/(authenticated)/(modals)/addTransaction')
-    // runTransaction({
-    //   id: Math.random().toString(),
-    //   amount: 133.45,
-    //   date: new Date(),
-    //   title: 'Money back',
-    // })
   }
 
   return (
