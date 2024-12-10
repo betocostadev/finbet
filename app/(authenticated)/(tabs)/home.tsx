@@ -10,6 +10,7 @@ import { useHeaderHeight } from '@react-navigation/elements'
 
 import { Text, View } from 'react-native'
 import { useRouter } from 'expo-router'
+import { displayBRLCurrencyNumber } from '@/utils/currency'
 
 const HomeTabScreen = () => {
   const { balance, transactions, clearTransactions, getSortedTransactions } =
@@ -22,6 +23,8 @@ const HomeTabScreen = () => {
     router.push('/(authenticated)/(modals)/addTransaction')
   }
 
+  console.log('balance: ', balance())
+
   return (
     <ScrollView
       style={styles.container}
@@ -30,7 +33,9 @@ const HomeTabScreen = () => {
       <View style={styles.account}>
         <View style={styles.row}>
           <Text style={styles.currency}>R$</Text>
-          <Text style={styles.balance}>{balance().toFixed(2)}</Text>
+          <Text style={styles.balance}>
+            {displayBRLCurrencyNumber(balance())}
+          </Text>
         </View>
       </View>
 
@@ -73,7 +78,7 @@ const HomeTabScreen = () => {
                 {new Date(transaction.date).toLocaleDateString()}
               </Text>
             </View>
-            <Text>R$ {transaction.amount}</Text>
+            <Text>R$ {displayBRLCurrencyNumber(transaction.amount)}</Text>
           </View>
         ))}
       </View>

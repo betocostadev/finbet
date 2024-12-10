@@ -1,18 +1,11 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  NativeSyntheticEvent,
-  TextInputFocusEventData,
-} from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { View, Text, StyleSheet, TextInput } from 'react-native'
+import React, { useState } from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Colors from '@/constants/Colors'
 import { Ionicons } from '@expo/vector-icons'
 import { useBalanceStore } from '@/store/balanceStore'
 import { defaultStyles } from '@/constants/Styles'
-import { formatCurrency } from '@/utils/currency'
+import { formatCurrencyBRL, parseBRLCurrencyToFloat } from '@/utils/currency'
 
 type Transaction = 'income' | 'expense'
 
@@ -22,44 +15,46 @@ const AddTransaction = () => {
   const [title, setTitle] = useState('')
   const [amount, setAmount] = useState('')
 
-  const [hasErrorTitle, setHasErrorTitle] = useState(true)
-
-  useEffect(() => {
-    setAmount(formatCurrency('0'))
-  }, [])
+  const [hasErrorTitle, setHasErrorTitle] = useState(false)
+  const [hasErrorAmount, setHasErrorAmount] = useState(false)
 
   const handleTransactionType = (type: Transaction) => {
     setTransactionType(type)
   }
 
-  const handleAmountChange = (
-    e: NativeSyntheticEvent<TextInputFocusEventData>
-  ) => {
-    const value = e.nativeEvent.text
-    if (!isNaN(Number(value))) {
-      setAmount(formatCurrency(value))
-    }
+  const handleTitleChange = (value: string) => {
+    setHasErrorTitle(false)
+    setTitle(value)
   }
 
-  // const sanitizeData = (amount: string) => {
-  //   if (amount.includes(',')) {
-  //     amount = amount.split(',').join('.')
-  //     console.log(amount)
-  //     console.log(isNaN(Number(amount)))
-  //     console.log(Number(amount).toLocaleString())
-  //   }
-  // }
+  const handleAmountChange = (value: string) => {
+    setHasErrorAmount(false)
+    setAmount(formatCurrencyBRL(value))
+  }
 
   const handleAddTransaction = () => {
-    console.log('title: ', title)
-    console.log('amount: ', amount)
+    if (!title.length) {
+      setHasErrorTitle(true)
+      return
+    }
 
-    // runTransaction({
-    //   id: Math.random().toString(),
-    //   amount: Number(amount),
-    //   date: new Date(),
-    //   title,
-    // })
+    if (!amount.length) {
+      setHasErrorAmount(true)
+      return
+    }
+
+    const numAmount = parseBRLCurrencyToFloat(amount)
+    if (numAmount <= 0) {
+      setHasErrorAmount(true)
+      return
+    }
+
+    runTransaction({
+      id: Math.random().toString(),
+      amount: numAmount,
+      date: new Date(),
+      title,
+    })
   }
 
   return (
@@ -96,19 +91,26 @@ const AddTransaction = () => {
         <View style={styles.inputsContainer}>
           <TextInput
             style={styles.inputField}
-            placeholder="Transaction name"
+            placeholder="Transaction title"
             keyboardType="default"
             value={title}
-            onChangeText={setTitle}
+            onChangeText={handleTitleChange}
           />
+          {hasErrorTitle && (
+            <Text style={styles.textError}>
+              Please input a transaction title
+            </Text>
+          )}
           <TextInput
             style={styles.inputField}
             placeholder="Value"
             keyboardType="decimal-pad"
             value={amount}
-            onChangeText={setAmount}
-            onBlur={handleAmountChange}
+            onChangeText={handleAmountChange}
           />
+          {hasErrorAmount && (
+            <Text style={styles.textError}>Please input a valid number</Text>
+          )}
         </View>
         <View style={{ marginTop: 10, alignItems: 'center' }}>
           <TouchableOpacity
@@ -185,6 +187,11 @@ const styles = StyleSheet.create({
     borderColor: Colors.dark,
     borderRadius: 10,
     padding: 8,
+  },
+  textError: {
+    fontSize: 16,
+    fontStyle: 'italic',
+    color: '#d22f2f',
   },
 })
 
