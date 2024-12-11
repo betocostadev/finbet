@@ -10,6 +10,7 @@ import {
   parseBRLCurrencyToFloat,
 } from '@/utils/currency'
 import LastTransaction from '@/components/Shared/LastTransaction'
+import { BlurView } from 'expo-blur'
 
 type Transaction = 'income' | 'expense'
 
@@ -62,7 +63,7 @@ const AddTransaction = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <BlurView intensity={60} style={styles.container}>
       <View style={styles.formContainer}>
         <View style={styles.buttonsContainer}>
           <TouchableOpacity
@@ -116,7 +117,7 @@ const AddTransaction = () => {
             <Text style={styles.textError}>Please input a valid number</Text>
           )}
         </View>
-        <View style={{ marginTop: 10, alignItems: 'center' }}>
+        <View style={{ marginTop: 20, alignItems: 'center' }}>
           <TouchableOpacity
             style={{
               backgroundColor: Colors.primary,
@@ -132,7 +133,7 @@ const AddTransaction = () => {
           <LastTransaction />
         </View>
       </View>
-    </View>
+    </BlurView>
   )
 }
 
@@ -140,7 +141,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 100,
-    backgroundColor: 'rgb(240, 240, 240)',
+    backgroundColor: 'rgba(244, 244, 244, 0.364)',
   },
   formContainer: {
     paddingTop: 10,

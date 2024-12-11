@@ -215,7 +215,7 @@ const InitialLayout = () => {
         <Stack.Screen
           name="(authenticated)/(modals)/addTransaction"
           options={{
-            presentation: 'containedModal',
+            presentation: 'transparentModal',
             animation: 'slide_from_bottom',
             title: 'Add Transaction',
             headerTransparent: true,

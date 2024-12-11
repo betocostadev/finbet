@@ -35,7 +35,8 @@ export const useBalanceStore = create<BalanceState>()(
         return spent
       },
       getLastTransaction: () => {
-        const lastTransaction = get().transactions[0]
+        const lastTransaction =
+          get().transactions[get().transactions.length - 1]
         return lastTransaction
       },
       getSortedTransactions: () =>

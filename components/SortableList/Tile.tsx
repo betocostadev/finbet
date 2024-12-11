@@ -5,6 +5,7 @@ import { SIZE } from './Config'
 import Colors from '@/constants/Colors'
 import { useBalanceStore } from '@/store/balanceStore'
 import { Ionicons } from '@expo/vector-icons'
+import { formatCurrencyBRLString } from '@/utils/currency'
 
 const styles = StyleSheet.create({
   container: {
@@ -40,11 +41,11 @@ const Tile = ({ id }: TileProps) => {
           style={{
             color: Colors.dark,
             fontWeight: 'bold',
-            fontSize: 26,
+            fontSize: 18,
             paddingTop: 10,
           }}
         >
-          R${getMonthSpent()}
+          R${formatCurrencyBRLString(getMonthSpent())}
         </Text>
       </View>
     )
@@ -117,7 +118,10 @@ const Tile = ({ id }: TileProps) => {
                   paddingVertical: 10,
                 }}
               >
-                {transactions[transactions.length - 1].amount}€
+                R$
+                {formatCurrencyBRLString(
+                  transactions[transactions.length - 1].amount
+                )}
               </Text>
               <Text
                 style={{ color: Colors.gray, fontWeight: 'bold', fontSize: 16 }}

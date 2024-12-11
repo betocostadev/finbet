@@ -1,6 +1,29 @@
+import { useBalanceStore } from '@/store/balanceStore'
+import { formatCurrencyBRLString } from '@/utils/currency'
+import { useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
 const LastTransaction = () => {
+  const [hasTransactions, setHasTransactions] = useState(false)
+  const { getLastTransaction } = useBalanceStore()
+
+  useEffect(() => {
+    if (!getLastTransaction().id) {
+      setHasTransactions(false)
+    } else {
+      setHasTransactions(true)
+    }
+  })
+
+  console.log(getLastTransaction())
+
+  if (!hasTransactions) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.header}>No Transactions</Text>
+      </View>
+    )
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Last transaction</Text>
@@ -18,13 +41,17 @@ const LastTransaction = () => {
         </View>
         <View style={styles.row}>
           <View style={styles.cell}>
-            <Text>Income</Text>
+            <Text>
+              {getLastTransaction().amount <= 0 ? 'Expense' : 'Income'}
+            </Text>
           </View>
           <View style={styles.cell}>
-            <Text>Bolas</Text>
+            <Text>{getLastTransaction().title}</Text>
           </View>
           <View style={styles.cell}>
-            <Text>R$550,00</Text>
+            <Text>
+              R$ {formatCurrencyBRLString(getLastTransaction().amount)}
+            </Text>
           </View>
         </View>
       </View>
