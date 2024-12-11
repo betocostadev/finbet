@@ -5,7 +5,10 @@ import Colors from '@/constants/Colors'
 import { Ionicons } from '@expo/vector-icons'
 import { useBalanceStore } from '@/store/balanceStore'
 import { defaultStyles } from '@/constants/Styles'
-import { formatCurrencyBRL, parseBRLCurrencyToFloat } from '@/utils/currency'
+import {
+  formatCurrencyBRLString,
+  parseBRLCurrencyToFloat,
+} from '@/utils/currency'
 
 type Transaction = 'income' | 'expense'
 
@@ -29,7 +32,7 @@ const AddTransaction = () => {
 
   const handleAmountChange = (value: string) => {
     setHasErrorAmount(false)
-    setAmount(formatCurrencyBRL(value))
+    setAmount(formatCurrencyBRLString(value))
   }
 
   const handleAddTransaction = () => {
@@ -51,7 +54,7 @@ const AddTransaction = () => {
 
     runTransaction({
       id: Math.random().toString(),
-      amount: numAmount,
+      amount: transactionType === 'income' ? numAmount : numAmount * -1,
       date: new Date(),
       title,
     })
@@ -149,7 +152,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 16,
+    paddingHorizontal: 22,
+    paddingVertical: 14,
   },
   left: {
     borderTopLeftRadius: 20,

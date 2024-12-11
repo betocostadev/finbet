@@ -10,7 +10,7 @@ import { useHeaderHeight } from '@react-navigation/elements'
 
 import { Text, View } from 'react-native'
 import { useRouter } from 'expo-router'
-import { displayBRLCurrencyNumber } from '@/utils/currency'
+import { formatCurrencyBRLString } from '@/utils/currency'
 
 const HomeTabScreen = () => {
   const { balance, transactions, clearTransactions, getSortedTransactions } =
@@ -34,7 +34,7 @@ const HomeTabScreen = () => {
         <View style={styles.row}>
           <Text style={styles.currency}>R$</Text>
           <Text style={styles.balance}>
-            {displayBRLCurrencyNumber(balance())}
+            {formatCurrencyBRLString(balance())}
           </Text>
         </View>
       </View>
@@ -78,7 +78,7 @@ const HomeTabScreen = () => {
                 {new Date(transaction.date).toLocaleDateString()}
               </Text>
             </View>
-            <Text>R$ {displayBRLCurrencyNumber(transaction.amount)}</Text>
+            <Text>R$ {formatCurrencyBRLString(transaction.amount)}</Text>
           </View>
         ))}
       </View>
