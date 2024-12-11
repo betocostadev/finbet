@@ -9,6 +9,7 @@ import {
   formatCurrencyBRLString,
   parseBRLCurrencyToFloat,
 } from '@/utils/currency'
+import LastTransaction from '@/components/Shared/LastTransaction'
 
 type Transaction = 'income' | 'expense'
 
@@ -126,6 +127,9 @@ const AddTransaction = () => {
           >
             <Text style={defaultStyles.buttonText}>Add Transaction</Text>
           </TouchableOpacity>
+        </View>
+        <View style={{ marginTop: 50 }}>
+          <LastTransaction />
         </View>
       </View>
     </View>

@@ -12,6 +12,7 @@ export interface Transaction {
 export interface BalanceState {
   balance: () => number
   clearTransactions: () => void
+  getLastTransaction: () => Transaction
   getSortedTransactions: () => Array<Transaction>
   getMonthSpent: () => number
   runTransaction: (transaction: Transaction) => void
@@ -32,6 +33,10 @@ export const useBalanceStore = create<BalanceState>()(
             )
             .reduce((acc, t) => acc + t.amount, 0) ?? 0
         return spent
+      },
+      getLastTransaction: () => {
+        const lastTransaction = get().transactions[0]
+        return lastTransaction
       },
       getSortedTransactions: () =>
         get()
